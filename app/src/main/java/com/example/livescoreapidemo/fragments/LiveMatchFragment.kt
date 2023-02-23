@@ -38,7 +38,7 @@ class LiveMatchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerview_liveScore.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-//        getLiveMatchDetails()
+        getLiveMatchDetails()
 
     }
 
