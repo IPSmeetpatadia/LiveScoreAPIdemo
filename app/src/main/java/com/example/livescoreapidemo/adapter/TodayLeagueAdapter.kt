@@ -30,9 +30,12 @@ class TodayLeagueAdapter(val context: Context, val todayLeaguesList: List<Stage>
     }
 
     override fun onBindViewHolder(holder: TodayLeagueViewHolder, position: Int) {
-        Glide.with(context).load("https://static.livescore.com/i2/fh/${todayLeaguesList[position].Ccd}.jpg").into(holder.LEA_IMG)
-        holder.LEA_NAME?.text = todayLeaguesList[position].Snm
-        holder.CON_NAME?.text = todayLeaguesList[position].Cnm
-        holder.itemView.findViewById<RecyclerView>(R.id.recyclerView_Events).adapter = TodayMatchesAdapter(context, todayLeaguesList[position].Events)
+        holder.apply {
+            Glide.with(context).load("https://static.livescore.com/i2/fh/${todayLeaguesList[position].Ccd}.jpg").into(LEA_IMG)
+            LEA_NAME?.text = todayLeaguesList[position].Snm
+            CON_NAME?.text = todayLeaguesList[position].Cnm
+            itemView.findViewById<RecyclerView>(R.id.recyclerView_Events).adapter = TodayMatchesAdapter(context, todayLeaguesList[position].Events)
+        }
+
     }
 }

@@ -41,16 +41,13 @@ class MainActivity : AppCompatActivity() {
         naviView.setNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.menu_live -> {
-                    Log.d("NAVIGATION DRAWER", "LIVE")
                     replaceFragments(LiveMatchFragment(), it.title.toString())
                 }
                 R.id.menu_today -> {
-                    Log.d("NAVIGATION DRAWER", "TODAY")
                     replaceFragments(TodayMatchFragment(), it.title.toString())
                 }
                 else -> {
-                    Log.d("NAVIGATION DRAWER", "LIVE")
-                    replaceFragments(LiveMatchFragment(), it.title.toString())
+                    true
                 }
             }
         }
@@ -71,4 +68,5 @@ class MainActivity : AppCompatActivity() {
         setTitle(title)
         return true
     }
+
 }

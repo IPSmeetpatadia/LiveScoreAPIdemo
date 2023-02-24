@@ -31,9 +31,12 @@ class LiveLeagueAdapter(val context: Context, val leagueList: List<Stage>): Recy
     }
 
     override fun onBindViewHolder(holder: MatchViewHolder, position: Int) {
-        Glide.with(context).load("https://static.livescore.com/i2/fh/${leagueList[position].Ccd}.jpg").into(holder.LEA_IMG)
-        holder.LEA_NAME?.text = leagueList[position].Snm
-        holder.CON_NAME?.text = leagueList[position].Cnm
-        holder.itemView.findViewById<RecyclerView>(R.id.recyclerView_Events).adapter = LiveMatchListAdapter(context, leagueList[position].Events)
+        holder.apply {
+            Glide.with(context).load("https://static.livescore.com/i2/fh/${leagueList[position].Ccd}.jpg").into(LEA_IMG)
+            LEA_NAME?.text = leagueList[position].Snm
+            CON_NAME?.text = leagueList[position].Cnm
+            itemView.findViewById<RecyclerView>(R.id.recyclerView_Events).adapter = LiveMatchListAdapter(context, leagueList[position].Events)
+        }
     }
+
 }

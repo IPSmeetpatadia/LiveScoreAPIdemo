@@ -32,13 +32,16 @@ class LiveMatchListAdapter(val context: Context, val liveMatchLst: List<com.exam
     }
 
     override fun onBindViewHolder(holder: LiveMatchListViewHolder, position: Int) {
-        holder.match_status.text = liveMatchLst[position].Eps
-        Glide.with(context).load("https://lsm-static-prod.livescore.com/high/${liveMatchLst[position].T1[0].Img}.jpg").into(holder.logo_team_one)
-        Glide.with(context).load("https://lsm-static-prod.livescore.com/high/${liveMatchLst[position].T2[0].Img}.jpg").into(holder.logo_team_one)
-        Glide.with(context).load("https://lsm-static-prod.livescore.com/high/${liveMatchLst[position]}.jpg").into(holder.logo_team_two)
-        holder.team_one_name.text = liveMatchLst[position].T1[0].Nm
-        holder.team_two_name.text = liveMatchLst[position].T2[0].Nm
-        holder.team_one_score.text = liveMatchLst[position].Tr1
-        holder.team_two_score.text = liveMatchLst[position].Tr2
+        //scope function `apply`
+        holder.apply {
+            match_status.text = liveMatchLst[position].Eps
+            Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${liveMatchLst[position].T1[0].Img}").into(logo_team_one)
+            Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${liveMatchLst[position].T2[0].Img}").into(logo_team_two)
+            team_one_name.text = liveMatchLst[position].T1[0].Nm
+            team_two_name.text = liveMatchLst[position].T2[0].Nm
+            team_one_score.text = liveMatchLst[position].Tr1
+            team_two_score.text = liveMatchLst[position].Tr2
+        }
     }
+
 }

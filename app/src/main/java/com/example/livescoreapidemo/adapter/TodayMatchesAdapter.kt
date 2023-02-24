@@ -33,13 +33,15 @@ class TodayMatchesAdapter(val context: Context, val todayMatchesList: List<Event
     }
 
     override fun onBindViewHolder(holder: TodayMatchesViewHolder, position: Int) {
-        holder.match_status.text = todayMatchesList[position].Eps
-        Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${todayMatchesList[position].T1[0].Img}").into(holder.logo_team_one)
-        Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${todayMatchesList[position].T2[0].Img}").into(holder.logo_team_one)
-        Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${todayMatchesList[position]}").into(holder.logo_team_two)
-        holder.team_one_name.text = todayMatchesList[position].T1[0].Nm
-        holder.team_two_name.text = todayMatchesList[position].T2[0].Nm
-        holder.team_one_score.text = todayMatchesList[position].Tr1
-        holder.team_two_score.text = todayMatchesList[position].Tr2
+        holder.apply {
+            match_status.text = todayMatchesList[position].Eps
+            Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${todayMatchesList[position].T1[0].Img}").into(logo_team_one)
+            Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${todayMatchesList[position].T2[0].Img}").into(logo_team_two)
+            team_one_name.text = todayMatchesList[position].T1[0].Nm
+            team_two_name.text = todayMatchesList[position].T2[0].Nm
+            team_one_score.text = todayMatchesList[position].Tr1
+            team_two_score.text = todayMatchesList[position].Tr2
+        }
     }
+
 }
