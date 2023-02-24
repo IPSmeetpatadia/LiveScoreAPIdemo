@@ -14,11 +14,9 @@ import kotlinx.android.synthetic.main.single_view_league_view.view.*
 
 class LiveLeagueAdapter(val context: Context, val leagueList: List<Stage>): RecyclerView.Adapter<LiveLeagueAdapter.MatchViewHolder>() {
     class MatchViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
         var LEA_IMG: ImageView = itemView.img_leagueLogo
         var LEA_NAME: TextView? = itemView.txt_leagueName
         var CON_NAME: TextView? = itemView.txt_leagueCountry
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {

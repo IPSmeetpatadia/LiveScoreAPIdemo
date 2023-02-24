@@ -36,6 +36,6 @@ class TodayLeagueAdapter(val context: Context, val todayLeaguesList: List<Stage>
             CON_NAME?.text = todayLeaguesList[position].Cnm
             itemView.findViewById<RecyclerView>(R.id.recyclerView_Events).adapter = TodayMatchesAdapter(context, todayLeaguesList[position].Events)
         }
-
     }
+
 }

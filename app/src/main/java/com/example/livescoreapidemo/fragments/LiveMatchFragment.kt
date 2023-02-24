@@ -33,23 +33,16 @@ class LiveMatchFragment : Fragment() {
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_live_match, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         liveMatchRecyclerView = recyclerview_liveScore
-        liveMatchRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        liveMatchRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         getLiveMatchDetails()
-
     }
 
     private fun getLiveMatchDetails() {
@@ -59,28 +52,23 @@ class LiveMatchFragment : Fragment() {
             .build()
             .create(LiveMatchInterface::class.java)
 
+        //TO GET TIMEZONE
         val tz: TimeZone = TimeZone.getDefault()
         val cal: Calendar = GregorianCalendar.getInstance(tz)
         val offsetInMillis: Int = tz.getOffset(cal.getTimeInMillis())
         val offset = String.format("%02d.%02d", Math.abs(offsetInMillis / 3600000), Math.abs(offsetInMillis / 60000 % 60))
-        Log.d("TimeZone", offset)
+        Log.d("TimeZone", "+${offset}")
 
         val liveData = urlBuilder.getLiveScore(
             "soccer",
-            +5.30,
+            "$offset",
             "83e0bb9359mshf23a5e69a002769p129d96jsn8ed0c455bfcf",
             "livescore6.p.rapidapi.com"
         )
 
-
         liveData.enqueue(object : Callback<ListLiveDataClass?> {
-
-            override fun onResponse(
-                call: Call<ListLiveDataClass?>,
-                response: Response<ListLiveDataClass?>
-            ) {
+            override fun onResponse(call: Call<ListLiveDataClass?>, response: Response<ListLiveDataClass?>) {
                 val responseBody = response.body()!!
-
                 liveMatchesAdapter = LiveLeagueAdapter(requireContext(), responseBody.Stages)
                 liveMatchRecyclerView.adapter = liveMatchesAdapter
             }
@@ -89,5 +77,7 @@ class LiveMatchFragment : Fragment() {
                 Log.d("LIVE MATCH RESPONSE", "RESPONSE FAIL!!")
             }
         })
+
     }
+
 }

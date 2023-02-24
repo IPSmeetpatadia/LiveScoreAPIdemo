@@ -11,7 +11,7 @@ interface LiveMatchInterface {
     @GET("list-live")
     fun getLiveScore(
         @Query("Category") category: String,
-        @Query("Timezone") timeZone: Double,
+        @Query("Timezone") timeZone: String,
         @Header("X-RapidAPI-Key") apiKey: String,
         @Header("X-RapidAPI-Host") apiHost: String
     ): Call<ListLiveDataClass>
