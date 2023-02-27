@@ -1,4 +1,4 @@
-package com.example.livescoreapidemo.dataclass.livematches
+package com.example.livescoreapidemo.dataclasses.livematches
 
 data class Stg(
     val Ccd: String,

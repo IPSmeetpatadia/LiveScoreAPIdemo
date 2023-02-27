@@ -1,6 +1,6 @@
 package com.example.livescoreapidemo.interfaces
 
-import com.example.livescoreapidemo.dataclass.todaymatches.TodayMatchesDataClass
+import com.example.livescoreapidemo.dataclasses.todaymatches.TodayMatchesDataClass
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

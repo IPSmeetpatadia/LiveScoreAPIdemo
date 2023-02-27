@@ -1,4 +1,4 @@
-package com.example.livescoreapidemo.dataclass.livematches
+package com.example.livescoreapidemo.dataclasses.livematches
 
 data class Sids(
     val `1`: String,

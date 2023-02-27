@@ -1,5 +1,6 @@
-package com.example.livescoreapidemo.adapter
+package com.example.livescoreapidemo.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ class NewsAdapter(val context: Context, private val newsCategoryList: List<Categ
 
     class NewsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val categoryName: TextView = itemView.txt_newCategoryName
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
@@ -25,10 +28,17 @@ class NewsAdapter(val context: Context, private val newsCategoryList: List<Categ
         return newsCategoryList.size
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         holder.apply {
             categoryName.text = newsCategoryList[position].initialTitle
         }
+
+
     }
+
+
+
+
 }
 

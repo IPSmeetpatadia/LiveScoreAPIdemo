@@ -1,4 +1,4 @@
-package com.example.livescoreapidemo.dataclass.todaymatches
+package com.example.livescoreapidemo.dataclasses.todaymatches
 
 data class X15(
     val allowedCountries: List<String>,

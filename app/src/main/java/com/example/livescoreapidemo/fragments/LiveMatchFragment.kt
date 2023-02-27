@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.livescoreapidemo.R
-import com.example.livescoreapidemo.adapter.LiveLeagueAdapter
-import com.example.livescoreapidemo.dataclass.livematches.ListLiveDataClass
+import com.example.livescoreapidemo.adapters.LiveLeagueAdapter
+import com.example.livescoreapidemo.dataclasses.livematches.ListLiveDataClass
 import com.example.livescoreapidemo.interfaces.LiveMatchInterface
 import kotlinx.android.synthetic.main.fragment_live_match.*
 import retrofit2.Call

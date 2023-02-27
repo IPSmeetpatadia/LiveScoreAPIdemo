@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.livescoreapidemo.R
-import com.example.livescoreapidemo.adapter.NewsAdapter
+import com.example.livescoreapidemo.adapters.NewsAdapter
 import com.example.livescoreapidemo.dataclasses.news.NewsList
 import com.example.livescoreapidemo.interfaces.NewsInterface
 import kotlinx.android.synthetic.main.fragment_news.*

@@ -1,4 +1,4 @@
-package com.example.livescoreapidemo.adapter
+package com.example.livescoreapidemo.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.livescoreapidemo.R
-import com.example.livescoreapidemo.dataclass.livematches.Stage
+import com.example.livescoreapidemo.dataclasses.livematches.Stage
 import kotlinx.android.synthetic.main.single_view_league_view.view.*
 
 class LiveLeagueAdapter(val context: Context, val leagueList: List<Stage>): RecyclerView.Adapter<LiveLeagueAdapter.MatchViewHolder>() {
