@@ -8,4 +8,8 @@
     <item
         android:id="@+id/menu_today"
         android:title="Today"/>
+
+    <item
+        android:id="@+id/menu_news"
+        android:title="News"/>
 </menu>

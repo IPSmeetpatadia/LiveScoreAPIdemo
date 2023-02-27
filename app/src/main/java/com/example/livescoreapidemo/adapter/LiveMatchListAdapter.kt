@@ -9,9 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.livescoreapidemo.R
+import com.example.livescoreapidemo.dataclass.livematches.Event
 import kotlinx.android.synthetic.main.single_view_single_match.view.*
 
-class LiveMatchListAdapter(val context: Context, val liveMatchLst: List<com.example.livescoreapidemo.dataclasses.livelist.Event>): RecyclerView.Adapter<LiveMatchListAdapter.LiveMatchListViewHolder>() {
+class LiveMatchListAdapter(val context: Context, val liveMatchLst: List<Event>): RecyclerView.Adapter<LiveMatchListAdapter.LiveMatchListViewHolder>() {
     class LiveMatchListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val match_status:TextView = itemView.txt_match_status
         val logo_team_one: ImageView = itemView.imgView_team_one

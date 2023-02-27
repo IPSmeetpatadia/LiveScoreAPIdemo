@@ -21,8 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val TODAY_BASE_URL = "https://livescore6.p.rapidapi.com/matches/v2/"
-
 class TodayMatchFragment : Fragment() {
 
     lateinit var todayMatchRecyclerView: RecyclerView
@@ -46,7 +44,7 @@ class TodayMatchFragment : Fragment() {
     private fun getTodayMatchList() {
         val urlBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(TODAY_BASE_URL)
+            .baseUrl(BASE_URL)
             .build()
             .create(TodayMatchInterface::class.java)
 

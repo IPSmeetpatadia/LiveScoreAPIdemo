@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.fragments.LiveMatchFragment
+import com.example.livescoreapidemo.fragments.NewsFragment
 import com.example.livescoreapidemo.fragments.TodayMatchFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -45,6 +46,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.menu_today -> {
                     replaceFragments(TodayMatchFragment(), it.title.toString())
+                }
+                R.id.menu_news -> {
+                    replaceFragments(NewsFragment(), it.title.toString())
                 }
                 else -> {
                     true

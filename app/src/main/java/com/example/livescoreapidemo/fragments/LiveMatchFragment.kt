@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.adapter.LiveLeagueAdapter
-import com.example.livescoreapidemo.dataclasses.livelist.ListLiveDataClass
+import com.example.livescoreapidemo.dataclass.livematches.ListLiveDataClass
 import com.example.livescoreapidemo.interfaces.LiveMatchInterface
 import kotlinx.android.synthetic.main.fragment_live_match.*
 import retrofit2.Call
@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.String
 import java.util.*
 
-const val LIVE_BASE_URL = "https://livescore6.p.rapidapi.com/matches/v2/"
+const val BASE_URL = "https://livescore6.p.rapidapi.com/matches/v2/"
 
 class LiveMatchFragment : Fragment() {
 
@@ -48,7 +48,7 @@ class LiveMatchFragment : Fragment() {
     private fun getLiveMatchDetails() {
         val urlBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(LIVE_BASE_URL)
+            .baseUrl(BASE_URL)
             .build()
             .create(LiveMatchInterface::class.java)
 
@@ -77,7 +77,6 @@ class LiveMatchFragment : Fragment() {
                 Log.d("LIVE MATCH RESPONSE", "RESPONSE FAIL!!")
             }
         })
-
     }
 
 }

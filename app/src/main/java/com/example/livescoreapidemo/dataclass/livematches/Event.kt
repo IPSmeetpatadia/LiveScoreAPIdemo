@@ -1,4 +1,4 @@
-package com.example.livescoreapidemo.dataclasses.livelist
+package com.example.livescoreapidemo.dataclass.livematches
 
 data class Event(
     val ComX: Int,
@@ -17,6 +17,7 @@ data class Event(
     val Et: Int,
     val IncsX: Int,
     val LuC: Int,
+    val LuUT: Long,
     val LuX: Int,
     val Pid: Int,
     val Pids: Pids,
@@ -28,7 +29,7 @@ data class Event(
     val Stg: Stg,
     val SubsX: Int,
     val T1: List<T1>,
-    val T2: List<T2>,
+    val T2: List<T1>,
     val Tr1: String,
     val Tr1OR: String,
     val Tr2: String,
