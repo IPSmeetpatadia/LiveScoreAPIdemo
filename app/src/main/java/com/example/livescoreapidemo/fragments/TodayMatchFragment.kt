@@ -38,7 +38,7 @@ class TodayMatchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         todayMatchRecyclerView = recyclerview_todayMatches
         todayMatchRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        getTodayMatchList()
+//        getTodayMatchList()
     }
 
     private fun getTodayMatchList() {

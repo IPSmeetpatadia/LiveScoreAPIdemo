@@ -42,7 +42,7 @@ class LiveMatchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         liveMatchRecyclerView = recyclerview_liveScore
         liveMatchRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        getLiveMatchDetails()
+//        getLiveMatchDetails()
     }
 
     private fun getLiveMatchDetails() {
