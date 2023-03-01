@@ -12,11 +12,10 @@ import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.dataclasses.specificNews.Data
 import kotlinx.android.synthetic.main.single_view_news.view.*
 
-class NewsSpecificAdapter(val context: Context, private val newsList: List<Data>): RecyclerView.Adapter<NewsSpecificAdapter.NewsViewHolder>() {
+class NewsSpecificAdapter(val context: Context, private val newsList: List<Data>, val itemClick: NewsSpecificAdapter.OnNewsClick): RecyclerView.Adapter<NewsSpecificAdapter.NewsViewHolder>() {
     class NewsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val news_img: ImageView = itemView.imgView_news
         val news_heading: TextView = itemView.txt_newsHeading
-        val news_category: TextView = itemView.txt_newsCategory
         val news_timing: TextView = itemView.txt_newsTime
     }
 
@@ -34,6 +33,15 @@ class NewsSpecificAdapter(val context: Context, private val newsList: List<Data>
             Glide.with(context).load(newsList[position].image.data.urls.uploaded.gallery).into(news_img)
             news_heading.text = newsList[position].title
             news_timing.text = newsList[position].updated_at
+
+            itemView.setOnClickListener {
+                itemClick.clickedNews(newsList[position])
+            }
         }
+
+    }
+
+    interface OnNewsClick {
+        fun clickedNews(data: Data)
     }
 }

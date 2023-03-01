@@ -6,18 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.livescoreapidemo.R
+import com.example.livescoreapidemo.activities.MainActivity
 import com.example.livescoreapidemo.adapters.NewsAdapter
 import com.example.livescoreapidemo.adapters.NewsCategoryAdapter
 import com.example.livescoreapidemo.adapters.NewsSpecificAdapter
 import com.example.livescoreapidemo.dataclasses.news.Category
 import com.example.livescoreapidemo.dataclasses.news.NewsList
+import com.example.livescoreapidemo.dataclasses.news.TopStory
 import com.example.livescoreapidemo.dataclasses.specificNews.Body
+import com.example.livescoreapidemo.dataclasses.specificNews.Data
 import com.example.livescoreapidemo.dataclasses.specificNews.SpecificNews
+import com.example.livescoreapidemo.interfaces.NewsDetailInterface
 import com.example.livescoreapidemo.interfaces.NewsInterface
 import com.example.livescoreapidemo.interfaces.SpecificNewsInterface
 import kotlinx.android.synthetic.main.fragment_news.*
@@ -59,9 +64,9 @@ class NewsFragment : Fragment() {
     }
 
     private fun getNews() {
-
         progressBar?.visibility = View.VISIBLE
 
+        //CATEGORY LIST
         val urlBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(NEWS_BASE_URL)
@@ -79,23 +84,27 @@ class NewsFragment : Fragment() {
 
                 newsCategoryRecyclerView.adapter = NewsCategoryAdapter(requireContext(), responseBody!!.categories, object : NewsCategoryAdapter.OnCategoryClick{
                     override fun clickedCategories(category: Category) {
-
+                        //  LOADING NEWS ACCORDINGLY SELECTED CATEGORY
                         progressBar?.visibility = View.VISIBLE
-
                         val newURL = Retrofit.Builder()
                             .baseUrl(NEWS_BASE_URL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .build()
                             .create(SpecificNewsInterface::class.java)
 
-
                         newURL.getSpecificNews(category.id, "83e0bb9359mshf23a5e69a002769p129d96jsn8ed0c455bfcf", "livescore6.p.rapidapi.com")
+
                             .enqueue(object : Callback<SpecificNews?> {
                                 override fun onResponse(call: Call<SpecificNews?>, response: Response<SpecificNews?>) {
-                                    Log.d("URL", response.toString())
                                     val responseBody1 = response.body()
-                                    newsRecyclerView.adapter = NewsSpecificAdapter(requireContext(), responseBody1!!.data)
 
+                                    newsRecyclerView.adapter = NewsSpecificAdapter(requireContext(), responseBody1!!.data,
+                                    object : NewsSpecificAdapter.OnNewsClick {
+                                        //LOADING DETAIL NEWS FRAGMENT, ON CLICK OF ITEM
+                                        override fun clickedNews(data: Data) {
+                                            (activity as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.layout_mainActivity, DetailedNewsFragment(data)).addToBackStack(null).commit()
+                                        }
+                                    })
                                     progressBar?.visibility = View.GONE
                                 }
 

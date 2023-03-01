@@ -46,6 +46,8 @@ class NewsAdapter(val context: Context, val newsList: List<TopStory>): RecyclerV
                 str = " minute"
             } else if (newsList[position].updatedAt.unit == "news.hours") {
                 str = " hours"
+            } else if (newsList[position].updatedAt.unit == "news.hour") {
+                str = " hour"
             }
             else if ((newsList[position].updatedAt.unit == "news.day") && (newsList[position].updatedAt.time > 1.toString())) {
                 str = " Days ago"
