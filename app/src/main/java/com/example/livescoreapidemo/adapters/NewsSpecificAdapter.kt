@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.dataclasses.specificNews.Data
 import kotlinx.android.synthetic.main.single_view_news.view.*
@@ -30,7 +31,7 @@ class NewsSpecificAdapter(val context: Context, private val newsList: List<Data>
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         holder.apply {
-//            Glide.with(context).load(newsList[position].t).into(news_img)
+            Glide.with(context).load(newsList[position].image.data.urls.uploaded.gallery).into(news_img)
             news_heading.text = newsList[position].title
             news_timing.text = newsList[position].updated_at
         }
