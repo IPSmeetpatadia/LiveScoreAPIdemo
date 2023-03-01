@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.livescoreapidemo.R
@@ -33,6 +34,7 @@ class NewsAdapter(val context: Context, val newsList: List<TopStory>): RecyclerV
 
     override fun getItemCount(): Int {
         return newsList.size
+
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
