@@ -7,7 +7,7 @@ import retrofit2.http.Header
 
 interface NewsInterface {
 
-    @GET("v2/list/")
+    @GET("v2/list")
     fun getNewsList(
         @Header("X-RapidAPI-Key") apiKey: String,
         @Header("X-RapidAPI-Host") apiHost: String

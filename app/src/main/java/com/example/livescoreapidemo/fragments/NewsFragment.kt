@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.activities.MainActivity
+import com.example.livescoreapidemo.adapters.HomeArticleTitleAdapter
 import com.example.livescoreapidemo.adapters.NewsAdapter
 import com.example.livescoreapidemo.adapters.NewsCategoryAdapter
 import com.example.livescoreapidemo.adapters.NewsSpecificAdapter
@@ -37,14 +38,12 @@ class NewsFragment : Fragment() {
 
     lateinit var newsCategoryRecyclerView: RecyclerView
     lateinit var newsRecyclerView: RecyclerView
+    lateinit var articleRecyclerView: RecyclerView
     private val progressBar = view?.findViewById<ProgressBar>(R.id.news_progressBar)
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
-
-        getNews()
-
         super.onCreate(savedInstanceState)
+        getNews()
+        getHomeArticles()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -61,6 +60,9 @@ class NewsFragment : Fragment() {
         newsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         newsRecyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))      //adding separation line between each item
 
+        articleRecyclerView = recyclerView_homeArticles
+        articleRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        articleRecyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
     private fun getNews() {
@@ -120,7 +122,29 @@ class NewsFragment : Fragment() {
                 Log.d("NEWS-LIST RESPONSE", "RESPONSE FAIL!!")
             }
         })
+    }
 
+    private fun getHomeArticles() {
+        val articleUrl = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(NEWS_BASE_URL)
+            .build()
+            .create(NewsInterface::class.java)
+
+        articleUrl.getNewsList("83e0bb9359mshf23a5e69a002769p129d96jsn8ed0c455bfcf", "livescore6.p.rapidapi.com")
+            .enqueue(object : Callback<NewsList?> {
+                override fun onResponse(call: Call<NewsList?>, response: Response<NewsList?>) {
+
+
+                    val responseBody = response.body()
+                    Log.d("RESPONSE", responseBody.toString())
+                    articleRecyclerView.adapter = HomeArticleTitleAdapter(requireContext(), responseBody!!.homepageArticles)
+                }
+
+                override fun onFailure(call: Call<NewsList?>, t: Throwable) {
+                    Log.d("HOME ARTICLE TITLE", "RESPONSE FAIL")
+                }
+            })
     }
 
 }
