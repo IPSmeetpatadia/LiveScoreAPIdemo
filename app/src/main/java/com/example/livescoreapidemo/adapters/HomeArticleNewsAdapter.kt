@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.dataclasses.news.Article
-import com.example.livescoreapidemo.dataclasses.news.HomepageArticle
 import kotlinx.android.synthetic.main.single_view_home_article.view.*
 
 class HomeArticleNewsAdapter(val context: Context, val homeArticleList: List<Article>): RecyclerView.Adapter<HomeArticleNewsAdapter.ArticleViewHolder>() {

@@ -59,7 +59,6 @@ class TodayMatchFragment : Fragment() {
             override fun onResponse(call: Call<TodayMatchesDataClass?>, response: Response<TodayMatchesDataClass?>) {
                 val responseBody = response.body()!!
                 todayMatches_progressBar.visibility = View.GONE
-
                 todayMatchRecyclerView.adapter = TodayLeagueAdapter(requireContext(), responseBody.Stages)
             }
 

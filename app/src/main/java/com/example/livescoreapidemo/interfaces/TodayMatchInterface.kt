@@ -16,4 +16,5 @@ interface TodayMatchInterface {
         @Header("X-RapidAPI-Key") apiKey: String,
         @Header("X-RapidAPI-Host") apiHost: String
     ): Call<TodayMatchesDataClass>
+
 }

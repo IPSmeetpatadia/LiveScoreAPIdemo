@@ -1,23 +1,16 @@
 package com.example.livescoreapidemo.adapters
 
 import android.content.Context
-import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.dataclasses.news.TopStory
 import kotlinx.android.synthetic.main.single_view_news.view.*
-import java.time.ZoneId
-import java.time.ZonedDateTime
-import java.util.concurrent.TimeUnit
-import kotlin.math.abs
 
 class NewsAdapter(val context: Context, val newsList: List<TopStory>): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     class NewsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -34,7 +27,6 @@ class NewsAdapter(val context: Context, val newsList: List<TopStory>): RecyclerV
 
     override fun getItemCount(): Int {
         return newsList.size
-
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
@@ -59,4 +51,5 @@ class NewsAdapter(val context: Context, val newsList: List<TopStory>): RecyclerV
             news_timing.text = newsList[position].updatedAt.time + str
         }
     }
+
 }

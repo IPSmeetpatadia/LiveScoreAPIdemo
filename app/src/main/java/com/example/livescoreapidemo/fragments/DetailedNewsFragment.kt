@@ -2,6 +2,7 @@ package com.example.livescoreapidemo.fragments
 
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,13 +34,11 @@ class DetailedNewsFragment(val data: Data) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         getNewsDetails()
     }
 
     private fun getNewsDetails() {
-
-                val imgV = view?.findViewById<ImageView>(R.id.imgV_detailedNewsImg)
+        val imgV = view?.findViewById<ImageView>(R.id.imgV_detailedNewsImg)
 
         val urlBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -56,17 +55,18 @@ class DetailedNewsFragment(val data: Data) : Fragment() {
                 txt_detailedNewsHeadline.text = responseBody!!.adsTargeting.newsArticleTitle
                 Glide.with(context!!).load(responseBody.article.mainMedia.gallery.url).into(imgV!!)
                 txt_newsSubTxt.text = responseBody.article.mainMedia.gallery.alt
+
                 val stringBuilder = StringBuilder()
                 for (i in responseBody.article.body.indices) {
                     stringBuilder.append(responseBody.article.body[i].data.content+"\n\n")
                 }
                 txt_newsDetails.setText(Html.fromHtml(stringBuilder.toString()))
-
             }
 
             override fun onFailure(call: Call<NewsDetails?>, t: Throwable) {
-
+                Log.d("DETAIL NEWS RESPONSE", "RESPONSE FAIL!!")
             }
         })
     }
+
 }

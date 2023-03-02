@@ -70,7 +70,6 @@ class LiveMatchFragment : Fragment() {
             override fun onResponse(call: Call<ListLiveDataClass?>, response: Response<ListLiveDataClass?>) {
                 val responseBody = response.body()!!
                 liveMatches_progressBar.visibility = View.GONE
-
                 liveMatchesAdapter = LiveLeagueAdapter(requireContext(), responseBody.Stages)
                 liveMatchRecyclerView.adapter = liveMatchesAdapter
             }

@@ -38,7 +38,6 @@ class NewsSpecificAdapter(val context: Context, private val newsList: List<Data>
                 itemClick.clickedNews(newsList[position])
             }
         }
-
     }
 
     interface OnNewsClick {

@@ -5,8 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,11 +17,8 @@ import com.example.livescoreapidemo.adapters.NewsCategoryAdapter
 import com.example.livescoreapidemo.adapters.NewsSpecificAdapter
 import com.example.livescoreapidemo.dataclasses.news.Category
 import com.example.livescoreapidemo.dataclasses.news.NewsList
-import com.example.livescoreapidemo.dataclasses.news.TopStory
-import com.example.livescoreapidemo.dataclasses.specificNews.Body
 import com.example.livescoreapidemo.dataclasses.specificNews.Data
 import com.example.livescoreapidemo.dataclasses.specificNews.SpecificNews
-import com.example.livescoreapidemo.interfaces.NewsDetailInterface
 import com.example.livescoreapidemo.interfaces.NewsInterface
 import com.example.livescoreapidemo.interfaces.SpecificNewsInterface
 import kotlinx.android.synthetic.main.fragment_news.*

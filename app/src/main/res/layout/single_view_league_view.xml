@@ -19,7 +19,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5">
-
             <ImageView
                 android:id="@+id/img_leagueLogo"
                 android:layout_width="30dp"
@@ -51,7 +50,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.3">
-
             <ImageView
                 android:id="@+id/img_matchDetails"
                 android:layout_width="15dp"
