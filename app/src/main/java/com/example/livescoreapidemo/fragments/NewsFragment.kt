@@ -66,7 +66,6 @@ class NewsFragment : Fragment() {
     }
 
     private fun getNews() {
-        progressBar?.visibility = View.VISIBLE
 
         //CATEGORY LIST
         val urlBuilder = Retrofit.Builder()
@@ -82,12 +81,10 @@ class NewsFragment : Fragment() {
                 val responseBody = response.body()
                 newsRecyclerView.adapter = NewsAdapter(requireContext(), responseBody!!.topStories)
 
-                progressBar?.visibility = View.GONE
 
                 newsCategoryRecyclerView.adapter = NewsCategoryAdapter(requireContext(), responseBody!!.categories, object : NewsCategoryAdapter.OnCategoryClick{
                     override fun clickedCategories(category: Category) {
                         //  LOADING NEWS ACCORDINGLY SELECTED CATEGORY
-                        progressBar?.visibility = View.VISIBLE
                         val newURL = Retrofit.Builder()
                             .baseUrl(NEWS_BASE_URL)
                             .addConverterFactory(GsonConverterFactory.create())
@@ -107,7 +104,9 @@ class NewsFragment : Fragment() {
                                             (activity as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.layout_mainActivity, DetailedNewsFragment(data)).addToBackStack(null).commit()
                                         }
                                     })
-                                    progressBar?.visibility = View.GONE
+
+                                    //when we click specific category, home article should not be visible
+                                    articleRecyclerView.adapter = null
                                 }
 
                                 override fun onFailure(call: Call<SpecificNews?>, t: Throwable) {
