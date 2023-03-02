@@ -42,7 +42,7 @@ class LiveMatchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         liveMatchRecyclerView = recyclerview_liveScore
         liveMatchRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-//        getLiveMatchDetails()
+        getLiveMatchDetails()
     }
 
     private fun getLiveMatchDetails() {
@@ -69,6 +69,8 @@ class LiveMatchFragment : Fragment() {
         liveData.enqueue(object : Callback<ListLiveDataClass?> {
             override fun onResponse(call: Call<ListLiveDataClass?>, response: Response<ListLiveDataClass?>) {
                 val responseBody = response.body()!!
+                liveMatches_progressBar.visibility = View.GONE
+
                 liveMatchesAdapter = LiveLeagueAdapter(requireContext(), responseBody.Stages)
                 liveMatchRecyclerView.adapter = liveMatchesAdapter
             }

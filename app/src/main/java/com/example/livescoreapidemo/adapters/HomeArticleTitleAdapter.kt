@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.livescoreapidemo.R
+import com.example.livescoreapidemo.dataclasses.news.Category
 import com.example.livescoreapidemo.dataclasses.news.HomepageArticle
 import kotlinx.android.synthetic.main.single_view_home_article_title.view.*
 
-class HomeArticleTitleAdapter(val context: Context, val articleTitleList: List<HomepageArticle>): RecyclerView.Adapter<HomeArticleTitleAdapter.ArticleTitleViewHolder>() {
+class HomeArticleTitleAdapter(val context: Context, val articleTitleList: List<HomepageArticle>, val listener: OnArticleCategoryClick)
+    : RecyclerView.Adapter<HomeArticleTitleAdapter.ArticleTitleViewHolder>() {
 
     class ArticleTitleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val article_title: TextView = itemView.txt_homeArticleTitle
@@ -26,7 +28,6 @@ class HomeArticleTitleAdapter(val context: Context, val articleTitleList: List<H
     }
 
     override fun getItemCount(): Int {
-        Log.d("SIZE!!!!!!!!!!!!~~~~~~~", articleTitleList.size.toString())
         return articleTitleList.size
     }
 
@@ -38,6 +39,14 @@ class HomeArticleTitleAdapter(val context: Context, val articleTitleList: List<H
             recyclerView_article.adapter = HomeArticleNewsAdapter(context, articleTitleList[position].articles)
             recyclerView_article.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
+            itemView.setOnClickListener {
+                listener.clickedArticleCategories(articleTitleList[position].category)
+            }
         }
     }
+
+    interface OnArticleCategoryClick {
+        fun clickedArticleCategories(category: Category)
+    }
+
 }

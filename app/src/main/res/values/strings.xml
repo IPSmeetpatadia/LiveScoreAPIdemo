@@ -5,4 +5,6 @@
 
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+
+    <string name="api_key_1">83e0bb9359mshf23a5e69a002769p129d96jsn8ed0c455bfcf</string>
 </resources>

@@ -39,7 +39,6 @@ class NewsFragment : Fragment() {
     lateinit var newsCategoryRecyclerView: RecyclerView
     lateinit var newsRecyclerView: RecyclerView
     lateinit var articleRecyclerView: RecyclerView
-    private val progressBar = view?.findViewById<ProgressBar>(R.id.news_progressBar)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getNews()
@@ -66,7 +65,6 @@ class NewsFragment : Fragment() {
     }
 
     private fun getNews() {
-
         //CATEGORY LIST
         val urlBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -79,12 +77,16 @@ class NewsFragment : Fragment() {
         newsCategory.enqueue(object : Callback<NewsList?> {
             override fun onResponse(call: Call<NewsList?>, response: Response<NewsList?>) {
                 val responseBody = response.body()
-                newsRecyclerView.adapter = NewsAdapter(requireContext(), responseBody!!.topStories)
+                news_progressBar.visibility = View.GONE
 
+                newsRecyclerView.adapter = NewsAdapter(requireContext(), responseBody!!.topStories)
 
                 newsCategoryRecyclerView.adapter = NewsCategoryAdapter(requireContext(), responseBody!!.categories, object : NewsCategoryAdapter.OnCategoryClick{
                     override fun clickedCategories(category: Category) {
                         //  LOADING NEWS ACCORDINGLY SELECTED CATEGORY
+                        newsRecyclerView.adapter = null
+                        articleRecyclerView.adapter = null
+                        news_progressBar.visibility = View.VISIBLE
                         val newURL = Retrofit.Builder()
                             .baseUrl(NEWS_BASE_URL)
                             .addConverterFactory(GsonConverterFactory.create())
@@ -96,6 +98,7 @@ class NewsFragment : Fragment() {
                             .enqueue(object : Callback<SpecificNews?> {
                                 override fun onResponse(call: Call<SpecificNews?>, response: Response<SpecificNews?>) {
                                     val responseBody1 = response.body()
+                                    news_progressBar.visibility = View.GONE
 
                                     newsRecyclerView.adapter = NewsSpecificAdapter(requireContext(), responseBody1!!.data,
                                     object : NewsSpecificAdapter.OnNewsClick {
@@ -133,11 +136,45 @@ class NewsFragment : Fragment() {
         articleUrl.getNewsList("83e0bb9359mshf23a5e69a002769p129d96jsn8ed0c455bfcf", "livescore6.p.rapidapi.com")
             .enqueue(object : Callback<NewsList?> {
                 override fun onResponse(call: Call<NewsList?>, response: Response<NewsList?>) {
-
-
                     val responseBody = response.body()
-                    Log.d("RESPONSE", responseBody.toString())
-                    articleRecyclerView.adapter = HomeArticleTitleAdapter(requireContext(), responseBody!!.homepageArticles)
+
+                    articleRecyclerView.adapter = HomeArticleTitleAdapter(requireContext(), responseBody!!.homepageArticles,
+                    object : HomeArticleTitleAdapter.OnArticleCategoryClick{
+                        override fun clickedArticleCategories(category: Category) {
+                            newsRecyclerView.adapter = null
+                            articleRecyclerView.adapter = null
+                            news_progressBar.visibility = View.VISIBLE
+                            val newURL = Retrofit.Builder()
+                                .baseUrl(NEWS_BASE_URL)
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build()
+                                .create(SpecificNewsInterface::class.java)
+
+                            newURL.getSpecificNews(category.id, "83e0bb9359mshf23a5e69a002769p129d96jsn8ed0c455bfcf", "livescore6.p.rapidapi.com")
+
+                                .enqueue(object : Callback<SpecificNews?> {
+                                    override fun onResponse(call: Call<SpecificNews?>, response: Response<SpecificNews?>) {
+                                        val responseBody1 = response.body()
+                                        news_progressBar.visibility = View.GONE
+
+                                        newsRecyclerView.adapter = NewsSpecificAdapter(requireContext(), responseBody1!!.data,
+                                            object : NewsSpecificAdapter.OnNewsClick {
+                                                //LOADING DETAIL NEWS FRAGMENT, ON CLICK OF ITEM
+                                                override fun clickedNews(data: Data) {
+                                                    (activity as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.layout_mainActivity, DetailedNewsFragment(data)).addToBackStack(null).commit()
+                                                }
+                                            })
+
+                                        //when we click specific category, home article should not be visible
+                                        articleRecyclerView.adapter = null
+                                    }
+
+                                    override fun onFailure(call: Call<SpecificNews?>, t: Throwable) {
+                                        Log.d("NEWS-CATEGORY RESPONSE", "RESPONSE FAIL!!")
+                                    }
+                                })
+                        }
+                    })
                 }
 
                 override fun onFailure(call: Call<NewsList?>, t: Throwable) {

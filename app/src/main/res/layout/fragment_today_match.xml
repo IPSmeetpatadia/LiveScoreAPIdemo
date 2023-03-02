@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".fragments.TodayMatchFragment">
 
+    <ProgressBar
+        android:id="@+id/todayMatches_progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_todayMatches"
         android:layout_width="match_parent"
