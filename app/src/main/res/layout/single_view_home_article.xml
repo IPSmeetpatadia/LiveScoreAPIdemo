@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="5dp">
 
     <ImageView
@@ -14,23 +14,26 @@
         android:id="@+id/txt_articleTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/imgV_homeArticleImg"/>
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/imgV_homeArticleImg"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_articleTags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/imgV_homeArticleImg"
+        android:layout_toEndOf="@id/imgV_homeArticleImg"
+        android:layout_toStartOf="@id/txt_articleTiming"
         android:layout_below="@id/txt_articleTitle"
-        android:layout_marginLeft="5dp"
-        android:layout_alignBottom="@id/imgV_homeArticleImg"/>
+        android:layout_marginStart="5dp"
+        android:layout_alignBottom="@id/imgV_homeArticleImg"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <TextView
         android:id="@+id/txt_articleTiming"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/imgV_homeArticleImg"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

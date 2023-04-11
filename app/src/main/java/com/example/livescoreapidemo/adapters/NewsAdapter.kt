@@ -12,12 +12,12 @@ import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.dataclasses.news.TopStory
 import kotlinx.android.synthetic.main.single_view_news.view.*
 
-class NewsAdapter(val context: Context, val newsList: List<TopStory>): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(val context: Context, private val newsList: List<TopStory>): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     class NewsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val news_img: ImageView = itemView.imgView_news
-        val news_heading: TextView = itemView.txt_newsHeading
-        val news_category: TextView = itemView.txt_newsCategory
-        val news_timing: TextView = itemView.txt_newsTime
+        val newsImg: ImageView = itemView.imgView_news
+        val newsHeading: TextView = itemView.txt_newsHeading
+        val newsCategory: TextView = itemView.txt_newsCategory
+        val newsTiming: TextView = itemView.txt_newsTime
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
@@ -31,10 +31,10 @@ class NewsAdapter(val context: Context, val newsList: List<TopStory>): RecyclerV
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         holder.apply {
-            Glide.with(context).load(newsList[position].mainMedia.gallery.url).into(news_img)
-            news_heading.text = newsList[position].title
-            news_category.text = newsList[position].categoryLabel
-            var str:String = ""
+            Glide.with(context).load(newsList[position].mainMedia.gallery.url).into(newsImg)
+            newsHeading.text = newsList[position].title
+            newsCategory.text = newsList[position].categoryLabel
+            var str = ""
             if (newsList[position].updatedAt.unit == "news.minutes")
             {
                 str = " minute"
@@ -48,7 +48,7 @@ class NewsAdapter(val context: Context, val newsList: List<TopStory>): RecyclerV
             } else if ((newsList[position].updatedAt.unit == "news.day") && (newsList[position].updatedAt.time == 1.toString())) {
                 str = " Day ago"
             }
-            news_timing.text = newsList[position].updatedAt.time + str
+            newsTiming.text = newsList[position].updatedAt.time + str
         }
     }
 

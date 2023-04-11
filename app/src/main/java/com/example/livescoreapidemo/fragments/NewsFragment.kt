@@ -29,6 +29,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 const val NEWS_BASE_URL = "https://livescore6.p.rapidapi.com/news/"
+
 class NewsFragment : Fragment() {
 
     lateinit var newsCategoryRecyclerView: RecyclerView

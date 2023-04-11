@@ -12,15 +12,15 @@ import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.dataclasses.livematches.Event
 import kotlinx.android.synthetic.main.single_view_single_match.view.*
 
-class LiveMatchListAdapter(val context: Context, val liveMatchLst: List<Event>): RecyclerView.Adapter<LiveMatchListAdapter.LiveMatchListViewHolder>() {
+class LiveMatchListAdapter(val context: Context, private val liveMatchLst: List<Event>): RecyclerView.Adapter<LiveMatchListAdapter.LiveMatchListViewHolder>() {
     class LiveMatchListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val match_status:TextView = itemView.txt_match_status
-        val logo_team_one: ImageView = itemView.imgView_team_one
-        val logo_team_two: ImageView = itemView.imgView_team_two
-        val team_one_name: TextView = itemView.txt_team_one
-        val team_two_name: TextView = itemView.txt_team_two
-        val team_one_score: TextView = itemView.txt_score_team_one
-        val team_two_score: TextView = itemView.txt_score_team_two
+        val matchStatus:TextView = itemView.txt_match_status
+        val logoTeamOne: ImageView = itemView.imgView_team_one
+        val logoTeamTwo: ImageView = itemView.imgView_team_two
+        val teamOneName: TextView = itemView.txt_team_one
+        val teamTwoName: TextView = itemView.txt_team_two
+        val teamOneScore: TextView = itemView.txt_score_team_one
+        val teamTwoScore: TextView = itemView.txt_score_team_two
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LiveMatchListViewHolder {
@@ -35,13 +35,13 @@ class LiveMatchListAdapter(val context: Context, val liveMatchLst: List<Event>):
     override fun onBindViewHolder(holder: LiveMatchListViewHolder, position: Int) {
         //scope function `apply`
         holder.apply {
-            match_status.text = liveMatchLst[position].Eps
-            Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${liveMatchLst[position].T1[0].Img}").into(logo_team_one)
-            Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${liveMatchLst[position].T2[0].Img}").into(logo_team_two)
-            team_one_name.text = liveMatchLst[position].T1[0].Nm
-            team_two_name.text = liveMatchLst[position].T2[0].Nm
-            team_one_score.text = liveMatchLst[position].Tr1
-            team_two_score.text = liveMatchLst[position].Tr2
+            matchStatus.text = liveMatchLst[position].Eps
+            Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${liveMatchLst[position].T1[0].Img}").into(logoTeamOne)
+            Glide.with(context).load("https://lsm-static-prod.livescore.com/medium/${liveMatchLst[position].T2[0].Img}").into(logoTeamTwo)
+            teamOneName.text = liveMatchLst[position].T1[0].Nm
+            teamTwoName.text = liveMatchLst[position].T2[0].Nm
+            teamOneScore.text = liveMatchLst[position].Tr1
+            teamTwoScore.text = liveMatchLst[position].Tr2
         }
     }
 

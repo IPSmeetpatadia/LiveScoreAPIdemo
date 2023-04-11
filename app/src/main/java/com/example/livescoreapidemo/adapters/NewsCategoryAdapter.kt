@@ -12,13 +12,13 @@ import com.example.livescoreapidemo.R
 import com.example.livescoreapidemo.dataclasses.news.Category
 import kotlinx.android.synthetic.main.single_item_news_categories.view.*
 
-class NewsCategoryAdapter(val context: Context, private val newsCategoryList: List<Category>, val itemClick: OnCategoryClick) : RecyclerView.Adapter<NewsCategoryAdapter.NewsViewHolder>() {
+class NewsCategoryAdapter(val context: Context, private val newsCategoryList: List<Category>, private val itemClick: OnCategoryClick)
+    : RecyclerView.Adapter<NewsCategoryAdapter.NewsViewHolder>() {
 
-    var selectedItem = -1
+    private var selectedItem = -1
 
     class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryName: TextView = itemView.txt_newCategoryName
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {

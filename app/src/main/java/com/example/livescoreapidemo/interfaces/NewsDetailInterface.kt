@@ -1,7 +1,6 @@
 package com.example.livescoreapidemo.interfaces
 
 import com.example.livescoreapidemo.dataclasses.newsdetails.NewsDetails
-import com.example.livescoreapidemo.dataclasses.specificNews.Data
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

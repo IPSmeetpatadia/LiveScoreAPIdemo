@@ -18,8 +18,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.String
 import java.util.*
+import kotlin.math.abs
 
 const val BASE_URL = "https://livescore6.p.rapidapi.com/matches/v2/"
 
@@ -55,13 +55,13 @@ class LiveMatchFragment : Fragment() {
         //TO GET TIMEZONE
         val tz: TimeZone = TimeZone.getDefault()
         val cal: Calendar = GregorianCalendar.getInstance(tz)
-        val offsetInMillis: Int = tz.getOffset(cal.getTimeInMillis())
-        val offset = String.format("%02d.%02d", Math.abs(offsetInMillis / 3600000), Math.abs(offsetInMillis / 60000 % 60))
+        val offsetInMillis: Int = tz.getOffset(cal.timeInMillis)
+        val offset = String.format("%02d.%02d", abs(offsetInMillis / 3600000), abs(offsetInMillis / 60000 % 60))
         Log.d("TimeZone", "+${offset}")
 
         val liveData = urlBuilder.getLiveScore(
             "soccer",
-            "$offset",
+            offset,
             "83e0bb9359mshf23a5e69a002769p129d96jsn8ed0c455bfcf",
             "livescore6.p.rapidapi.com"
         )
