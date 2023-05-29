@@ -55,4 +55,5 @@ class NewsCategoryAdapter(val context: Context, private val newsCategoryList: Li
     interface OnCategoryClick {
         fun clickedCategories(category: Category)
     }
+
 }

@@ -54,7 +54,7 @@ class HomeArticleNewsAdapter(val context: Context, private val homeArticleList: 
             articleTitle.text = homeArticleList[position].title
             articleTiming.text = homeArticleList[position].updatedAt.time + str
 
-            itemView.findViewById<RecyclerView>(R.id.recyclerView_articleTags).adapter = NewsTagAdapter(context, homeArticleList[position].related.tags)
+            articleTags.adapter = NewsTagAdapter(context, homeArticleList[position].related.tags)
         }
     }
 }

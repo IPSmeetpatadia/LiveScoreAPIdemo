@@ -36,8 +36,10 @@ class TodayMatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         todayMatchRecyclerView = recyclerview_todayMatches
         todayMatchRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
         getTodayMatchList()
     }
 
@@ -69,4 +71,3 @@ class TodayMatchFragment : Fragment() {
     }
 
 }
-

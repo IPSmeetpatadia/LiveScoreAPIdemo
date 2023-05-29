@@ -13,6 +13,7 @@ import com.example.livescoreapidemo.dataclasses.news.TopStory
 import kotlinx.android.synthetic.main.single_view_news.view.*
 
 class NewsAdapter(val context: Context, private val newsList: List<TopStory>): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+
     class NewsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val newsImg: ImageView = itemView.imgView_news
         val newsHeading: TextView = itemView.txt_newsHeading

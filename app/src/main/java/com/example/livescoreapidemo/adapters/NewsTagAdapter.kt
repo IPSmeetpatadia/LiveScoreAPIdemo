@@ -29,4 +29,5 @@ class NewsTagAdapter(val context: Context, private val tagList: List<Tag>): Recy
             txtTag.text = tagList[position].title
         }
     }
+
 }

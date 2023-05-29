@@ -13,6 +13,7 @@ import com.example.livescoreapidemo.dataclasses.todaymatches.Event
 import kotlinx.android.synthetic.main.single_view_single_match.view.*
 
 class TodayMatchesAdapter(val context: Context, private val todayMatchesList: List<Event>): RecyclerView.Adapter<TodayMatchesAdapter.TodayMatchesViewHolder>() {
+
     class TodayMatchesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val matchStatus: TextView = itemView.txt_match_status
         val logoTeamOne: ImageView = itemView.imgView_team_one
